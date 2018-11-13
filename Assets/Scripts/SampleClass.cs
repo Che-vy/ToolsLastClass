@@ -1,19 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using UnityEngine;
 
-public class SampleClass : MonoBehaviour {
+public class SampleClass<T> : MonoBehaviour {
+
+    public int[] kk;
+    public List<int> jj;
+    public Stack<int> ww;
 
 	// Use this for initialization
 	void Start () {
+        SphereCollider sc = gameObject.AddComponent(typeof(SphereCollider)) as SphereCollider;
+
+
         System.Type ttype = typeof(Werewolf);
-       // CreateMonsterOfType<ttype>();
+        CreateMonsterOfType<Werewolf>();
 
 
         Vector4 v4 = (Vector4)System.Activator.CreateInstance(typeof(Vector4), new object[] { 1f, 2f, 3f, 4f });
         Debug.Log("activator : " + v4);
-
 	}
 	
 	// Update is called once per frame
@@ -40,4 +47,7 @@ public class SampleClass : MonoBehaviour {
       //
       //}
     }
+
+    
+
 }

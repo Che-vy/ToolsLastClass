@@ -6,7 +6,7 @@ public class BulletFactory
 {
 
     public Dictionary<string, Stack<GameObject>> typeList = new Dictionary<string, Stack<GameObject>>();
-
+    public Dictionary<string, System.Type> tlist = new Dictionary<string, System.Type>();
 
     #region Singleton
 
@@ -28,15 +28,9 @@ public class BulletFactory
 
     private BulletFactory()
     {
-        //typeList = GenericClassCreator.GetAllTypesFromFileLocation(Application.dataPath + "/Resources/Textures");
-
-
-
+        tlist = GenericClassCreator.GetAllTypesFromFileLocation(Application.dataPath + "/Resources/Textures");
 
     }
-
-
-
 
     public void SpawnObject(string type)
     {
@@ -49,14 +43,14 @@ public class BulletFactory
         {
             Debug.Log(type);
             if (typeList.ContainsKey(type))
-                typeList[type].Push(GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/" + type + ".prefab")));
+            {
+                typeList[type].Push(GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/" + type)));
+            }
             else
             {
                 typeList.Add(type, new Stack<GameObject>());
-                typeList[type].Push(GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/" + type + ".prefab")));
-
+                typeList[type].Push(GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/" + type)));
             }
-
         }
     }
 

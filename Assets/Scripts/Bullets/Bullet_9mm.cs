@@ -8,7 +8,7 @@ public class Bullet_9mm : Bullet {
     public float size, velocity;
 
     public Bullet_9mm() {
-
+        
        
 
     }

@@ -29,7 +29,7 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
         this.Clear();
 
         if (keys.Count != values.Count)
-            throw new System.Exception(string.Format("there are {0} keys and {1} values after deserialization. Make sure that both key and value types are serializable."));
+            throw new System.Exception(string.Format("there are {0} keys and {1} values after deserialization. Make sure that both key and value types are serializable.", keys.Count, values.Count));
 
         for (int i = 0; i < keys.Count; i++)
             this.Add(keys[i], values[i]);
@@ -41,14 +41,14 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
     public class ObjectPool : SerializableDictionary<string, Stack<System.Type>>
     {
 
-        Dictionary<string, System.Type> typeList = new Dictionary<string, System.Type>();
+        public Dictionary<string, System.Type> typeList = new Dictionary<string, System.Type>();
 
 
         public ObjectPool(string[] _fileNames)
         {
 
             typeList = GenericClassCreator.GetAllTypesFromFileNames(_fileNames);
-
+            
 
             foreach (string s in _fileNames)
             {
@@ -58,7 +58,7 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
                 if (t != null)
                 {
                     keys.Add(s);
-                    // values.Add(,new );
+                    //values.Add(t);
 
                 }
 

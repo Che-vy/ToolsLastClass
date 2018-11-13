@@ -11,14 +11,22 @@ public class MainFlow : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //textureList = new Dictionary<string, Texture>();
+        textureList = new Dictionary<string, Texture>();
         //BulletFactory.Instance.ToString();
         //textureList = BulletFactory.Instance.typeList;
-        //op = new ObjectPool(GenericClassCreator.GetAllFileNamesInFolder(Application.dataPath + "/Resources/Textures", "png"));
+        op = new ObjectPool(GenericClassCreator.GetAllFileNamesInFolder(Application.dataPath + "/Resources/Textures", "png"));
 
 
-        BulletFactory.Instance.SpawnObject("Bullet_9mm.prefab");
-      // BulletFactory.Instance.SpawnObject("Bullet_9mm");
+        // BulletFactory.Instance.SpawnObject("Bullet_9mm.prefab");
+        //BulletFactory.Instance.SpawnObject("Bullet_9mm");
+
+        BulletFactory.Instance.ToString();
+        
+        foreach (KeyValuePair<string, System.Type> kv in op.typeList) {
+            BulletFactory.Instance.SpawnObject(kv.Key);
+
+
+        }
       // BulletFactory.Instance.SpawnObject("Bullet_9mm");
       // BulletFactory.Instance.SpawnObject("Bullet_9mm");
       // BulletFactory.Instance.SpawnObject("Bullet_9mm");
